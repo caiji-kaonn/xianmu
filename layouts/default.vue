@@ -1,14 +1,17 @@
 <template>
   <div>
-    <Header/>
+    <Header />
     <nuxt />
+    <Footer />
   </div>
 </template>
 <script>
 import Header from '@/components/header'
+import Footer from '@/components/footer'
 export default {
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>
@@ -44,6 +47,6 @@ text-decoration: none;
 }
 
 a:hover{
-
+color: inherit;
 }
 </style>
