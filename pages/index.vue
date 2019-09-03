@@ -66,10 +66,11 @@ export default {
   },
   methods:{
     handelclick(index){
+      this.current=index
       if(this.current===2){
         this.$router.push('/air')
       }
-    this.current=index
+    
     }
   }
 };
