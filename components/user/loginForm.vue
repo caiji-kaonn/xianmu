@@ -59,6 +59,9 @@ export default {
                     data:this.formlist
                 }).then(res=>{
                     console.log(res)
+                    // 在登录成功的时候，调用store方法，保存token值
+                    this.$store.commit('user/setUserInfo', res.data)
+                    // console.log(this.$store)
                 })
             }else{
                 // this.$message.error('')
