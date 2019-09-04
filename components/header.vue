@@ -45,6 +45,9 @@ export default {
        message:'退出成功',
        type:'success'
      })
+     setTimeout(()=>{
+       this.$router.push('user/login')
+     },1000)
      }
   }
 };
