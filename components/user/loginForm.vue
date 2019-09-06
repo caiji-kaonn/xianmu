@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       formlist: {
-        username: "13800138000",
+        username: "13800138111",
         password: "123456"
       },
       rule: {

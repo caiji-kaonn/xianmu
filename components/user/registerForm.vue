@@ -43,7 +43,7 @@ export default {
     return {
       formList: {
         username: "13800138000",
-        nickname: "",
+        nickname: "索克萨尔",
         captcha: "000000",
         password: "123456",
         checkword: ""
