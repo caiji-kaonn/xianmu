@@ -166,22 +166,16 @@ export default {
             this.$alert('出发时间不能为空','提示')
             return
           }
-          this.$axios({
-            url:'/airs',
-            params:this.form
-          }).then(res=>{
-            // console.log(res)
-           this.$message({
+          this.$message({
               message:'查询成功，跳转中',
               type:'success'
-            });
+            })
             setTimeout(()=>{
             this.$router.push({
               path:'/air/flights',
               query:this.form
             })
-            },1000)
-          })
+            },500)
         },
         reserve(){
           // console.log(888)

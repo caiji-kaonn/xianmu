@@ -15,8 +15,20 @@
                 
                 <!-- 航班信息 -->
                 <div>
-                    
+                    <FlightsItem v-for="(item,index) in flightsDate.flights" :key="index"
+                    :data='item'/>
                 </div>
+                <div class="block">
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="Pageindex"
+      :page-sizes="[5, 10, 15, 20]"
+      :page-size="5"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
+  </div>
             </div>
 
             <!-- 侧边栏 -->
@@ -28,18 +40,40 @@
 </template>
 
 <script>
-
 import moment from "moment";
 import FlightsListHead from '@/components/air/flightsListHead'
+import FlightsItem from '@/components/air/flightsItem'
 export default {
     data(){
         return {
-            
+            flightsDate:{},
+            total:0,
+            Pageindex:5
         }
     },
     components:{
-        FlightsListHead
-    }
+        FlightsListHead,
+        FlightsItem
+    },
+    mounted(){
+    this.$axios({
+        url:'/airs',
+        params:this.$route.query
+    }).then(res=>{
+        // console.log(res.data)
+        // res.data(flights , info ,options)
+     this.flightsDate=res.data
+        
+    })
+    },
+    methods:{
+        handleSizeChange(){
+
+        },
+        handleCurrentChange(){
+
+        }
+    },
 }
 </script>
 
