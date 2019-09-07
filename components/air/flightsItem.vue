@@ -76,7 +76,7 @@ export default {
       // 计算分钟的差 （14*60+20）- （12*60）= 140分钟
       // 求余数  140 % 60 = 20 分钟
       // 把小时取整  140/60 Math.floor
-      const arr = this.data.arr_time.split(":");
+      let arr = this.data.arr_time.split(":");
       const dee = this.data.dep_time.split(":");
       if (arr[0] < dee[0]) {
         arr += 24;
