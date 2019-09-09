@@ -170,6 +170,9 @@ export default {
               message:'查询成功，跳转中',
               type:'success'
             })
+            const air=JSON.parse(localStorage.getItem('airs') || `[]`)
+            air.push(this.form)
+            localStorage.setItem('airs',JSON.stringify(air))
             setTimeout(()=>{
             this.$router.push({
               path:'/air/flights',
