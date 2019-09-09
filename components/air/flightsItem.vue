@@ -79,7 +79,7 @@ export default {
       let arr = this.data.arr_time.split(":");
       const dee = this.data.dep_time.split(":");
       if (arr[0] < dee[0]) {
-        arr += 24;
+        arr[0] += 24;
       }
       const arr1 = arr[0] * 60 + +arr[1];
       const dee1 = dee[0] * 60 + +dee[1];

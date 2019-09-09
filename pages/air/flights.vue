@@ -11,15 +11,18 @@
 
         <!-- 航班信息 -->
         <div>
-          <FlightsItem v-for="(item,index) in flightsDate.flights" :key="index" :data="item" />
+          <FlightsItem v-for="(item,index) in dataList" :key="index" :data="item" />
         </div>
         <div class="block">
+          <!-- siz-change=点击选择XX多少条/页 -->
+          <!-- current-change=点击一页一页 -->
+          <!-- current-page=动态当前设置多少条/页 -->
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="Pageindex"
             :page-sizes="[5, 10, 15, 20]"
-            :page-size="5"
+            :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"
           ></el-pagination>
@@ -41,8 +44,12 @@ export default {
   data() {
     return {
       flightsDate: {},
+      dataList:[],
       total: 0,
-      Pageindex: 5
+      // 当前页码
+      Pageindex: 1,
+      // 显示当前多少条
+      pageSize:5
     };
   },
   components: {
@@ -54,14 +61,35 @@ export default {
       url: "/airs",
       params: this.$route.query
     }).then(res => {
-      // console.log(res.data)
+      // console.log(res.data,555)
       // res.data(flights , info ,options)
+      // 总数据
       this.flightsDate = res.data;
+      // console.log(this.Pageindex)
+        // 改一下总数total
+      this.total=this.flightsDate.total
+      // 一加载，显示5条一页--放到新的数组
+      this.dataList=this.flightsDate.flights.slice(0,this.pageSize)
+    
     });
   },
-  methods: {
-    handleSizeChange() {},
-    handleCurrentChange() {}
+  methods: { 
+    // 点击选择XX多少条/页 方法
+    handleSizeChange(val) {
+    // console.log(val)
+    this.pageSize=val
+    this.dataList=this.flightsDate.flights.slice(0,val)
+
+    },
+    // 点击一页一页 显示当前点击的是哪一页
+    handleCurrentChange(val) {
+      this.Pageindex=val
+      this.dataList=this.flightsDate.flights.slice(
+        (this.Pageindex-1)*this.pageSize,
+        this.Pageindex*this.pageSize
+        )
+
+    }
   }
 };
 </script>
