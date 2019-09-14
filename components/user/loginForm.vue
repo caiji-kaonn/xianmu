@@ -47,6 +47,7 @@ export default {
             // 在登录成功的时候，调用store方法，保存token值
             this.$store.commit("user/setUserInfo", res.data);
             // console.log(this.$store)
+            this.$router.back()
             this.$message({
               message: "登录成功，正在跳转中",
               type: "success"
